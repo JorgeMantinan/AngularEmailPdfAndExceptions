@@ -1,0 +1,120 @@
+<div class="card border-primary m-auto" style="max-width: 70rem;">
+    <div class="card-header">{{ titulo }}</div>
+    <div class="card-body">
+        <form #udeForm="ngForm">
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <div class="form-group row">
+                        <ng-container *ngIf="authService.login.permissions.includes('ROLE_CREAR DATOS EXTENDIDOS')">
+                            <label for="user" class="col-form-label col-sm-12">{{ 'usersDataExtended.create.selectUserTitle' | translate }}</label>
+                            <select class="form-control" [(ngModel)]="userDataSelected" name="userId" (change)="getUserDataSelected()">
+                <option *ngFor="let user of listUserData" [ngValue]="user">
+                  {{user.dasId}} - {{user.name}} {{user.surname1}} {{user.surname2}}
+                </option>
+              </select>
+                        </ng-container>
+                    </div>
+                    <div class="form-group row">
+                        <label for="idCard" class="col-form-label col-sm-12">{{ 'usersDataExtended.create.identityDocTitle' | translate }}</label>
+                        <div class=" col-sm-12">
+                            <select class="form-control col-md-2" [(ngModel)]="selectedIdCardType" name="selectedId" (change)="getSelectedIdCardType()">
+                <option value="1" selected>NIF</option>
+                <option value="2">NIE</option>
+              </select>
+                            <div *ngIf="selectedIdCardType==1">
+                                <input type="text" oninput="this.value = this.value.toUpperCase()" class="form-control" [(ngModel)]="userDataExtended.nif" name="nif" placeholder="00000000T" #nif="ngModel" minlength="9" maxlength="9" required nifValidator [nifExistsValidator]="-1">
+                                <div class="alert alert-danger" *ngIf="nif.invalid && (nif.dirty || nif.touched)">
+                                    <div *ngIf="nif?.errors?.required">
+                                        {{ 'usersDataExtended.create-modify.fieldRequiredErrMsg' | translate }}
+                                    </div>
+                                    <div *ngIf="udeForm.controls['nif']?.errors?.nifValidator">
+                                        {{udeForm.controls['nif']?.errors?.nifValidator}}
+                                    </div>
+                                    <div *ngIf="udeForm.controls['nif']?.errors?.nifExistsValidator">
+                                        {{udeForm.controls['nif']?.errors?.nifExistsValidator}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedIdCardType==2">
+                                <input type="text" oninput="this.value = this.value.toUpperCase()" class="form-control" [(ngModel)]="userDataExtended.nie" name="nie" placeholder="X0000000T" #nie="ngModel" maxlength="9" required nieValidator [nieExistsValidator]="-1">
+                                <div class="alert alert-danger" *ngIf="nie.invalid && (nie.dirty || nie.touched)">
+                                    <div *ngIf="nie?.errors?.required">
+                                        {{ 'usersDataExtended.create-modify.fieldRequiredErrMsg' | translate }}
+                                    </div>
+                                    <div *ngIf="nie?.errors?.nieValidator">
+                                        {{nie.errors.nieValidator}}
+                                    </div>
+                                    <div *ngIf="nie?.errors?.nieExistsValidator">
+                                        {{nie.errors.nieExistsValidator}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="passport" class="col-form-label col-sm-12 ">{{ 'usersDataExtended.create-modify.passportFieldTitle' | translate }}</label>
+                        <div class="col-sm-12">
+                            <input type="text" oninput="this.value = this.value.toUpperCase()" class="form-control" [(ngModel)]="userDataExtended.passport" name="passport" placeholder="ABC123456" #passport="ngModel" maxlength="9" pattern="^[A-Z]{3}[0-9]{6}$" [passportExistsValidator]="-1">
+                            <div class="alert alert-danger" *ngIf="passport.invalid && (passport.dirty || passport.touched)">
+                                <div *ngIf="passport?.errors?.pattern">
+                                    {{ 'usersDataExtended.create-modify.passportPatternErrMsg' | translate }}
+                                </div>
+                                <div *ngIf="passport?.errors?.passportExistsValidator">
+                                    {{ passport.errors.passportExistsValidator }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ssNumber" class="col-form-label col-sm-12 ">{{ 'usersDataExtended.create-modify.numSSFieldTitle' | translate }}</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" [(ngModel)]="userDataExtended.ssNumber" name="ssNumber" #ssNumber="ngModel" maxlength="12" required ssNumberValidator [ssNumberExistsValidator]="-1">
+                            <div class="alert alert-danger" *ngIf=" ssNumber.invalid &&(ssNumber.dirty || ssNumber.touched)">
+                                <div *ngIf="ssNumber?.errors?.required">
+                                    {{ 'usersDataExtended.create-modify.fieldRequiredErrMsg' | translate }}
+                                </div>
+                                <div *ngIf="ssNumber?.errors?.ssNumberValidator">
+                                    {{ssNumber.errors.ssNumberValidator}}
+                                </div>
+                                <div *ngIf="ssNumber?.errors?.ssNumberExistsValidator">
+                                    {{ssNumber.errors.ssNumberExistsValidator}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="ibanNumber" class="col-form-label col-sm-12 ">{{ 'usersDataExtended.create-modify.ibanFieldTitle' | translate }}</label>
+                        <div class=" col-sm-12">
+                            <input type="text" oninput="this.value = this.value.toUpperCase()" class="form-control" [(ngModel)]="userDataExtended.ibanNumber" name="ibanNumber" #ibanNumber="ngModel" maxlength="24" required ibanValidator [ibanExistsValidator]="-1">
+                            <div class="alert alert-danger" *ngIf="ibanNumber.invalid && (ibanNumber.dirty || ibanNumber.touched)">
+                                <div *ngIf="ibanNumber?.errors?.required">
+                                    {{ 'usersDataExtended.create-modify.fieldRequiredErrMsg' | translate }}
+                                </div>
+                                <div *ngIf="ibanNumber?.errors?.ibanValidator">
+                                    {{ibanNumber.errors.ibanValidator}}
+                                </div>
+                                <div *ngIf="ibanNumber?.errors?.ibanExistsValidator">
+                                    {{ibanNumber.errors.ibanExistsValidator}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="enableSetPayroll">
+                        <app-payroll [userDE]="userDataExtended" [create]="true" [userRRHH]="authService.login.permissions.includes('ROLE_CREAR DATOS EXTENDIDOS')" #Payroll></app-payroll>
+                    </ng-container>
+                    <div class="form-group row">
+                        <div class="vol-sm-6">
+                            <button class="btn btn-primary" role="button" (click)='back()'>{{ 'usersDataExtended.create.btnCancelTitle' | translate }}</button>
+                            <button class="btn btn-success button-disable" role="button" (click)='create()' [disabled]="!udeForm.form.valid">{{ 'usersDataExtended.create.btnCreateTitle' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <app-address [listAddress]='' #Address></app-address>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

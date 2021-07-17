@@ -1,0 +1,63 @@
+<!-- DT008-DCS-06/11/2019 -->
+<div class="dual-list">
+    <div class="listbox mr-2">
+        <!-- boton de añadir los permisos a la lista de permisos asignados -->
+        <button type="button" name="addBtn" class="btn btn-primary btn-block" (click)="moveItem(auxAdd, listAssign, listData)"
+          [disabled]="listData.length === 0 || auxAdd.length === 0">{{ 'duallist.btnAddTitle' | translate }}</button>
+
+        <!-- <form class="filter">
+			<input class="form-control" name="listPerm" [(ngModel)]="filtro1" (ngModelChange)="onFilter(filtro1, listAssign)" #filtro16="ngModel">
+		</form> -->
+
+        <!-- Lista con todos los permisos de la base de datos -->
+        <div class="record-picker">
+            <ul [ngStyle]="{'max-height': '10em', 'min-height': '2em'}">
+                <li *ngFor="let data of listData" (click)="selectItem(auxAdd, data)" [ngClass]="{selected: isItemSelected(data,auxAdd), disabled: disabled}">
+                    <label id="data.id" *ngIf="numList === 1">{{data.dasId}} - {{data.name}} {{data.surname1}}</label>
+                    <label id="data.id" *ngIf="numList === 2">{{data.name.substring(5)}}</label>
+                    <label id="data.id" *ngIf="numList === 3">{{data.name}}</label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="button-bar">
+            <!-- boton para seleccionar todos los elementos de la lista de permisos que no están seleccionados-->
+            <button type="button" class="btn btn-primary pull-left" (click)="selectAll(listData, auxAdd)"
+              [disabled]="listData.length === 0 || auxAdd.length === listData.length">{{ 'duallist.btnSelectAllTitle' | translate }}</button>
+            <!-- des-seleccionar todos los permisos que están selecconados en la lista de permisos-->
+            <button type="button" class="btn btn-default pull-right" (click)="unselectAll(listData, auxAdd)"
+              [disabled]="listData.length === 0 || auxAdd.length === 0">{{ 'duallist.btnDeselectTitle' | translate }}</button>
+        </div>
+    </div>
+
+    <div class="listbox ml-2">
+        <!-- boton para eliminar los permisos que estan seleccionados de la lista de permisos asignados-->
+        <button type="button" name="addBtn" class="btn btn-primary btn-block" (click)="moveItem(auxRem, listData, listAssign)"
+          [disabled]="listAssign === undefined || listAssign.length === 0 || auxRem.length ===0">{{ 'duallist.btnRemoveTitle' | translate }}</button>
+
+        <!-- <form class="filter">
+			<input class="form-control" name="listAsig" [(ngModel)]="filtro2" (ngModelChange)="onFilter(filtro2)" #filtro29="ngModel">
+		</form> -->
+
+        <!-- lista de permisos asignados al rol-->
+        <div class="record-picker">
+            <ul [ngStyle]="{'max-height': '10em', 'min-height': '2em'}">
+                <li *ngFor="let data of listAssign" (click)="selectItem(auxRem, data)" [ngClass]="{selected: isItemSelected(data,auxRem), disabled: disabled}">
+                    <label id="data.id" *ngIf="numList === 1">{{data.dasId}} - {{data.name}} {{data.surname1}}</label>
+                    <label id="data.id" *ngIf="numList === 2">{{data.name.substring(5)}}</label>
+                    <label id="data.id" *ngIf="numList === 3">{{data.name}}</label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="button-bar">
+            <!-- boton para seleccionar todos los elementos de la lista de permisos asignados del rol -->
+            <button type="button" class="btn btn-primary pull-left" (click)="selectAll(listAssign,auxRem)"
+              [disabled]="listAssign === undefined || listAssign.length === 0 || auxRem.length === listAssign.length">
+                {{ 'duallist.btnSelectAllTitle' | translate }}</button>
+            <!-- des-seleccionar todos los elementos de la lista de permisos asginados del rol -->
+            <button type="button" class="btn btn-default pull-right" (click)="unselectAll(listAssign,auxRem)"
+              [disabled]="listAssign === undefined || listAssign.length === 0 || auxRem.length === 0">{{ 'duallist.btnDeselectTitle' | translate }}</button>
+        </div>
+    </div>
+</div>

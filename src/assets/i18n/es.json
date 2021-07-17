@@ -1,0 +1,331 @@
+{
+    "_comment": "FGS 26/11/19 Prueba mensajes en fichero en español",
+    "activate": {
+        "_comment": "FGS 28/11/19 Mensajes en la vista para cambiar la contraseña",
+        "title": "Cambio de contraseña",
+        "newPwdTitle": "Nueva contraseña",
+        "confirmPwdTitle": "Repita la contraseña",
+        "acceptBtnTitle": "Aceptar",
+        "pwdChangeOkTitle": "Contraseña",
+        "pwdChangeOkMsg": "La contraseña se ha modificado con éxito",
+        "pwdValidErrEmptyMsg": "Debe introducir algún dato",
+        "pwdValidErrRequisiteMsg": "La contraseña no cumple los requisitos. Debe tener 1 mayúscula, 1 minúscula, 1 número, 1 carácter especial y al menos 8 caracteres",
+        "pwdImgShowPwdMsg": "Ver Contraseña",
+        "pwdImgHidePwdMsg": "Ocultar Contraseña",
+        "pwdChangeErrorTitle": "Error Contraseña",
+        "pwdChangeErrorRequisiteMsg": "¡La contraseña no cumple los requisitos!",
+        "pwdChangeErrorFailAppMsg": "¡La aplicación no está respondiendo!",
+        "pwdChangeErrorDiffPwdsMsg": "Asegurese de que las contraseñas indicadas sean iguales para continuar"
+    },
+    "duallist": {
+        "btnAddTitle": "Añadir",
+        "btnRemoveTitle": "Eliminar",
+        "btnSelectAllTitle": "Seleccionar todo",
+        "btnDeselectTitle": "Deseleccionar"
+    },
+    "guards": {
+        "accessDeniedTitle": "Acceso denegado",
+        "accessDeniedMsg": "¡No tienes permiso para acceder a este recurso!",
+        "accessDeniedWithParamMsg": "¡Hola {{das}}. No tienes permiso para acceder a este recurso!"
+    },
+    "header": {
+        "linkUserDataTitle": "Usuarios",
+        "linkRoleTitle": "Roles",
+        "linkUserDataExtendedTitle": "Datos Extendidos",
+        "logoutTitle": "Desconectado",
+        "logoutMsg": "¡Adiós {{das}}, has cerrado sesión!"
+    },
+    "interceptor": {
+        "resourceNotFoundTitle": "Recurso no encontrado",
+        "accessDeniedTitle": "Acceso denegado",
+        "accessDeniedWithParamMsg": "¡Hola {{name}}. No tienes permiso para acceder a este recurso!"
+    },
+    "login": {
+        "title": "Entrar",
+        "dasTitle": "DAS ID",
+        "passwordTitle": "Contraseña",
+        "dasErrPatternMsg": "El formato del DAS es 1 letra y 6 dígitos",
+        "errLoginTitle": "Error en los datos de acceso",
+        "errLoginEmptyMsg": "Das y Contraseña deben contener algún dato",
+        "wlcmLoginTitle": "Bienvenido",
+        "wlcmLoginMsg": "¡Hola {{das}}, has iniciado sesion con éxito!",
+        "alreadyLoggedTitle": "Entrar",
+        "alreadyLoggedMsg": "¡Hola {{das}}, ya estás autenticado!",
+        "deactivatedAccountTitle": "Cuenta no activa",
+        "deactivatedAccountMsg": "Su cuenta esta desactivada. Contacte con el soporte.",
+        "pendActivationAccountMsg": "No ha activado su cuenta. Revise su correo electrónico. Si no encuentra el correo de activación de cuenta, contacte con el soporte.",
+        "lockedAccountTitle": "Cuenta bloqueada",
+        "lockedAccountMsg": "Ha agotado el número de intentos para acceder a su cuenta, contacte con el soporte para que le de acceso a la misma.",
+        "errLoginBadCredentialsMsg": "¡Das o Contraseña incorrectas!",
+        "defaultErrorTitle": "Error inesperado",
+        "defaultErrorMsg": "Por favor, pongase en contacto con servicio para solucionar el problema"
+    },
+    "paginator": {
+        "firstPageMsg": "Primera",
+        "lastPageMsg": "Última"
+    },
+    "role": {
+        "viewTitle": "Roles",
+        "title": "Listado de roles",
+        "colNameTitle": "Nombre",
+        "colNumUsersTitle": "Núm. usuarios",
+        "colPermissionsTitle": "Permisos",
+        "colEditTitle": "Editar",
+        "colDeleteTitle": "Eliminar",
+        "btnCreateTitle": "Crear Rol",
+        "btnEditTitle": "Editar",
+        "btnDeleteTitle": "Eliminar",
+        "deleteRolePopupTitle": "¿Está seguro?",
+        "deleteRolePopupMsg": "¿Seguro que desea eliminar el rol: {{name}}?",
+        "deleteRolePopupBtnCancel": "Cancelar",
+        "deleteRolePopupBtnAccept": "Eliminar",
+        "deleteRoleOkPopupTitle": "Rol eliminado",
+        "deleteRoleOkPopupMsg": "Rol {{name}} eliminado con éxito",
+        "create": {
+            "title": "Crear Rol",
+            "roleRequiredErrMsg": "El nombre del rol es obligatorio",
+            "roleNameTitle": "Nombre Rol:",
+            "permissionsTitle": "Permisos:",
+            "usersTitle": "Usuarios:",
+            "btnCancelTitle": "Cancelar",
+            "btnCreateTitle": "Crear rol",
+            "newRoleCreateTitle": "Nuevo rol creado"
+        },
+        "modify": {
+            "title": "Modificar Rol",
+            "roleRequiredErrMsg": "El nombre del rol es obligatorio",
+            "permissionsTitle": "Permisos:",
+            "usersTitle": "Usuarios:",
+            "btnCancelTitle": "Volver",
+            "btnModifyTitle": "Modificar rol",
+            "roleUpdatedTitle": "Rol actualizado"
+        },
+        "service": {
+            "accessDeniedTitle": "Acceso denegado",
+            "getRoleErrorTitle": "Error al recuperar los datos del rol",
+            "createRoleErrorMsg": "Error al crear rol. Contacte con el soporte.",
+            "modifyRoleErrorTitle": "Error al modificar rol",
+            "contactSupportErrorMsg": "Contacte con el soporte.",
+            "deleteRoleErrorTitle": "Error eliminar el rol"
+        }
+    },
+    "userData": {
+        "viewTitle": "Usuarios",
+        "title": "Listado de usuarios",
+        "colDasTitle": "DAS ID",
+        "colNameTitle": "Nombre",
+        "colSurname1Title": "Primer Apellido",
+        "colSurname2Title": "Segundo Apellido",
+        "colEmailTitle": "Correo",
+        "colStateTitle": "Estado",
+        "colRolesTitle": "Roles",
+        "colEditTitle": "Editar",
+        "colDeleteTitle": "Eliminar",
+        "btnCreateTitle": "Crear Usuario",
+        "btnEditTitle": "Editar",
+        "btnDeleteTitle": "Eliminar",
+        "userStatePendActivation": "Pendiente de activación",
+        "userStateActive": "Activo",
+        "userStateLocked": "Bloqueado",
+        "userStateInactive": "Inactivo",
+        "deleteUserPopupTitle": "¿Está seguro?",
+        "deleteUserPopupMsg": "¿Seguro que desea eliminar el usuario: {{das}}?",
+        "deleteUserPopupBtnCancel": "Cancelar",
+        "deleteUserPopupBtnAccept": "Eliminar",
+        "deleteUserOkPopupTitle": "Usuario eliminado",
+        "deleteUserOkPopupMsg": "Usuario {{das}} eliminado con éxito",
+        "create": {
+            "title": "Crear Usuario",
+            "usersTitle": "Usuarios:",
+            "btnCreateTitle": "Crear usuario",
+            "btnCancelTitle": "Cancelar",
+            "newUserCreatedTitle": "Nuevo usuario creado"
+        },
+        "create-modify": {
+            "_comment": "FGS 03/12/19 Mensajes comunes a la vista crear y modificar USUARIO",
+            "userDasFieldTitle": "DAS ID:",
+            "userNameFieldTitle": "Nombre:",
+            "userSurname1FieldTitle": "Primer apellido:",
+            "userSurname2FieldTitle": "Segundo apellido:",
+            "userEmailFieldTitle": "Email:",
+            "userRolesFieldTitle": "Roles:",
+            "userDasReqErrMsg": "El DAS ID es obligatorio",
+            "userDasMinLengthErrMsg": "El Das ID debe tener una longitud de 7 caracteres",
+            "userDasMaxLengthErrMsg": "El Das ID debe tener una longitud de 7 caracteres",
+            "userDasPatternErrMsg": " El Das ID debe seguir el patron 1 letra mayúcula y 6 dígitos",
+            "_comment-name": "FGS 02/12/19 Este mensaje afecta al nombre, apellido 1 y apellido2",
+            "userFieldReqErrMsg": "Este campo es obligatorio",
+            "userFieldMinLengthErrMsg": "Este campo debe tener una longitud mínima de 2 caracteres",
+            "userFieldMaxLengthErrMsg": "Este campo debe tener una longitud máxima de 40 caracteres",
+            "userFieldPatternErrMsg": "Este campo contiene caracteres no válidos",
+            "userEmailMinLengthErrMsg": "Este campo debe tener una longitud mínima de 5 caracteres",
+            "userEmailMaxLengthErrMsg": "Este campo debe tener una longitud máxima de 50 caracteres",
+            "userEmailPatternErrMsg": "Este campo no es una dirección de correo válida",
+            "btnCheckExistsDasTitle": "Comprobar existencia",
+            "dasAlreadyInUseMsg": "El DAS ID {{das}} no está disponible.",
+            "dasNotInUseMsg": "El DAS ID {{das}} está disponible."
+        },
+        "filters": {
+            "userDasFieldTitle": "DAS ID:",
+            "userNameFieldTitle": "Nombre:",
+            "userSurname1FieldTitle": "Primer apellido:",
+            "userSurname2FieldTitle": "Segundo apellido:",
+            "userEmailFieldTitle": "Email:",
+            "btnCleanTitle": "Limpiar",
+            "btnFilterTitle": "Filtrar"
+        },
+        "modify": {
+            "title": "Modificar Usuario",
+            "btnModifyTitle": "Aceptar",
+            "btnCancelTitle": "Volver",
+            "stateTitle": "Estado",
+            "confirmChangesTitle": "¿Desea realizar los cambios?",
+            "userModifiedTitle": "Usuario modificado",
+            "inactivateUserPopupTitle": "¿Está seguro?",
+            "inactivateUserPopupMsg": "¿Seguro que desea inactivar al usuario: {{das}}?",
+            "inactivateUserPopupBtnCancel": "No inactivar",
+            "inactivateUserPopupBtnAccept": "Inactivar"
+        },
+        "service": {
+            "_comment": "FGS 03/12/19 Mensajes del servicio de usuario.",
+            "userCreateErrMsg": "Error al crear usuario. Contacte con el soporte.",
+            "userModifyErrTitle": "Error al modificar usuario",
+            "userModifyDataFormatErrMsg": "Formato de datos incorrecto.",
+            "userModifyUnspecificErrMsg": "Contacte con el soporte."
+
+        }
+    },
+    "userDataExtended": {
+        "_comment": "JMM 11/12/19 Mensajes de la vista de datos extendidos del usuario.",
+        "viewTitle": "Mis Datos",
+        "title": "Usuario",
+        "colDasTitle": "DAS ID",
+        "colNameTitle": "Nombre completo",
+        "colNifTitle": "NIF",
+        "colNieTitle": "NIE",
+        "colPassportTitle": "Pasaporte",
+        "colIdCardTitle": "NIF/NIE/Pasaporte",
+        "colNumSSTitle": "Núm. Seg. Social",
+        "colIbanTitle": "Cuenta Bancaria",
+        "colAddressesTitle": "Dir",
+        "colEditTitle": "Editar",
+        "btnCreateTitle": "Crear Datos Usuario",
+        "btnEditTitle": "Editar",
+        "deleteUserDataPopupTitle": "¿Está seguro?",
+        "deleteUserDataPopupMsg": "¿Seguro que desea eliminar los datos del usuario: {{das}}?",
+        "deleteUserDataPopupBtnCancel": "Cancelar",
+        "deleteUserDataPopupBtnAccept": "Eliminar",
+        "deleteUserDataOkPopupTitle": "Datos del usuario",
+        "deleteUserDataOkPopupMsg": "Datos del usuario {{das}} eliminados con éxito",
+        "withoutPermissions": "No tienes permiso",
+        "create": {
+            "title": "Creación de datos extendidos de un usuario",
+            "selectUserTitle": "Seleccione usuario:",
+            "btnCreateTitle": "Crear datos",
+            "btnCancelTitle": "Cancelar",
+            "newUserDataCreatedTitle": "Creados los datos del usuario"
+        },
+        "payroll": {
+            "hiredDateText": "Fecha de contratación",
+            "firedDateText": "Fecha de despido",
+            "specialConditions": "Condiciones especiales",
+            "salary": "Salario anual",
+            "payments": "Número de pagas",
+            "downloadErrMsg": "Error al descargar pdf",
+            "downloadPayrollsErrMsg": "Error al descargar nóminas",
+            "contactSupportErrorMsg": "Contacte con el soporte.",
+            "unselectedPayrolls": "Sin nóminas seleccionadas",
+            "selectPayrollsToDownload": "Seleccione las nóminas para descargar"
+        },
+        "payrollConfig": {
+            "title": "Configuraciones de nóminas",
+            "fechGenNomina": "Día de generación de nóminas",
+            "permittedValueBetween": "Solo está permitido introdución valores entre 1 y 28"
+        }
+    },
+    "usersDataExtended": {
+        "_comment": "FGS 05/12/19 Mensajes de la vista de datos extendidos de los usuario.",
+        "viewTitle": "Datos detallados de los usuarios",
+        "title": "Listado de usuarios",
+        "colDasTitle": "DAS ID",
+        "colNameTitle": "Nombre completo",
+        "colIdCardTitle": "NIF/NIE/Pasaporte",
+        "colNumSSTitle": "Núm. Seg. Social",
+        "colIbanTitle": "Cuenta Bancaria",
+        "colAddressesTitle": "Dir",
+        "colEditTitle": "Editar",
+        "colDeleteTitle": "Eliminar",
+        "btnCreateTitle": "Crear Datos Usuario",
+        "btnEditTitle": "Editar",
+        "btnDeleteTitle": "Eliminar",
+        "deleteUserDataPopupTitle": "¿Está seguro?",
+        "deleteUserDataPopupMsg": "¿Seguro que desea eliminar los datos del usuario: {{das}}?",
+        "deleteUserDataPopupBtnCancel": "Cancelar",
+        "deleteUserDataPopupBtnAccept": "Eliminar",
+        "deleteUserDataOkPopupTitle": "Datos del usuario",
+        "deleteUserDataOkPopupMsg": "Datos del usuario {{das}} eliminados con éxito",
+        "create": {
+            "title": "Creación de datos extendidos de un usuario",
+            "selectUserTitle": "Seleccione usuario:",
+            "identityDocTitle": "Documento identificador:",
+            "btnCreateTitle": "Crear datos",
+            "btnCancelTitle": "Cancelar",
+            "newUserDataCreatedTitle": "Creados los datos del usuario",
+            "IdCardAlreadyInUseMsg": "El identificador {{idCard}} no está disponible.",
+            "IdCardNotInUseMsg": "El identificador {{idCard}} está disponible."
+        },
+        "create-modify": {
+            "_comment": "FGS 10/12/19 Mensajes comunes a la vista crear y modificar datos extendidos del usuario",
+            "idCardFieldTitle": "Identificador:",
+            "passportFieldTitle": "Pasaporte:",
+            "numSSFieldTitle": "Número Seguridad Social:",
+            "ibanFieldTitle": "IBAN:",
+            "fieldMinLengthErrMsg": "La longitud mínima debe ser de 9 caracteres",
+            "fieldMaxLengthErrMsg": "La longitud debe ser de 9 caracteres",
+            "nifReqErrMsg": "El NIF es obligatorio",
+            "nifPatternErrMsg": " El Das ID debe seguir el patron 1 letra mayúcula y 6 dígitos",
+            "fieldRequiredErrMsg": "Este campo es obligatorio",
+            "passportPatternErrMsg": "No cumple el patrón: 3 letras y 6 dígitos. Ej: ABC123456"
+        },
+        "modify": {
+            "title": "Modificar Datos Extendidos Usuario",
+            "userDataModifySuccess": "Datos de usuario modificados con éxito",
+            "btnModifyTitle": "Aceptar",
+            "btnCancelTitle": "Volver"
+        },
+        "service": {
+            "nonexistentUserDataErrMsg": "Datos extendidos inexistentes",
+            "createUserDataErrMsg": "Error al crear los datos usuario. Contacte con el soporte.",
+            "modifyUserDataErrMsg": "Error al modificar Datos del usuario"
+        },
+        "validator": {
+            "_comment": "FGS 26/12/19 Mensajes relativos a errores de validación",
+            "numberInUseErrMsg": "Este número está siendo usado",
+            "dasInUseErrMsg": "El das ya está siendo usado",
+            "roleNameInUseErrMsg": "Ese nombre de rol ya está siendo usado",
+            "ibanInvalidFormatErrMsg": "Formato adecuado: 'ES' y 22 dígitos. Ej: ES0812345678123456789012",
+            "ibanInvalidDCErrMsg": "Los dígitos de control no se corresponden con el resto de dígitos",
+            "nieInvalidFormatErrMsg": "Debe ser 1 letra [X,Y o Z], 7 dígitos y 1 letra. Ej: X0000000T",
+            "nifInvalidFormatErrMsg": "Deben ser 8 dígitos y 1 letra. Ej: 00000000T",
+            "nifnieInvalidDCErrMsg": "La letra de control no se corresponde con los dígitos",
+            "ssNumberInvalidFormatErrMsg": "Deben ser 12 dígitos",
+            "ssNumberInvalidDCErrMsg": "Los dígitos de control no se corresponden con el resto de dígitos"
+        }
+
+    },
+    "address": {
+        "addAddress": "Añadir dirección",
+        "closeAddress": "Cerrar dirección",
+        "existingAddress": "La dirección ya existe para el usuario"
+    },
+    "welcome": {
+        "_comment": "FGS 28/11/19 Mensajes en la vista welcome a la que acceden todos los usuarios.",
+        "wlcmPageh3Msg": "Bienvenido",
+        "wlcmPageh4Msg": "Esta es la ventana de inicio de la aplicación, en el menú superior encontrará las partes de la aplicación a las que tiene acceso.",
+        "wlcmPageh5Msg": "Le deseamos que tenga una agradable estancia en la aplicación.",
+        "imgAtos": "Logo de Atos"
+    }
+
+
+
+}

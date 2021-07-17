@@ -1,0 +1,41 @@
+<ul class="alert alert-danger" *ngIf="errors?.length > 0">
+    <li *ngFor="let err of errors">
+        {{ err }}
+    </li>
+</ul>
+
+
+<div class="card border-primary col-xl-4 mx-auto" style="margin-top: 11%;">
+    <div class="card-body text-primary">
+       <h5 class="card-title text-center">{{ 'login.title' | translate }}</h5>
+
+        <form #loginForm="ngForm">
+            <div class="form-group">
+                <label for="dasId">{{ 'login.dasTitle' | translate }}</label>
+                <input [(ngModel)]="login.dasId" type="text" class="form-control" name="dasId" id="Das Id" placeholder="{{das}}" autofocus
+                  required pattern="[A-Z]\d{6}" maxlength="7">
+                <div class="alert alert-danger" *ngIf="dasId != undefined && (dasId.invalid && (dasId.dirty || dasId.touched))">
+                    <div *ngIf="dasId?.errors?.maxlength">
+                      La longitud debe ser de 7 posiciones
+                    </div>
+                    <div *ngIf="dasId?.errors?.pattern">
+                        {{ 'login.dasErrPatternMsg' | translate }}
+                    </div>
+                  </div>
+            </div>
+
+            <label for="password">{{ 'login.passwordTitle' | translate }}</label>
+            <div class="input-group mb-3">
+                <input [(ngModel)]="login.password" [type]="show ? 'text' : 'password'" class="form-control" name="password" id="password" placeholder="{{password}}"
+                  pattern="(?=^.{8,16}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+                <div class="input-group-append">
+                    <img (click)="viewPassword()" *ngIf="!show" src='assets/imgs/icons8-eye-48-1.png' title="Ver contraseña" style="width: 36px; cursor:pointer; border:1px solid #cccccc">
+                    <img (click)="viewPassword()" *ngIf="show" src='assets/imgs/icons8-eye-48.png' title="Ocultar contraseña" style="width: 36px; cursor:pointer; border:1px solid #cccccc">
+                </div>
+            </div>
+            <div class="form-group">
+                <input (click)='getLogin()' type="submit" class="btn btn-lg btn-primary btn-block mt-4" value="{{ 'login.title' | translate }}">
+            </div>
+        </form>
+    </div>
+</div>

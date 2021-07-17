@@ -1,0 +1,126 @@
+<!-- dtg005-DCS-26/11/2019 -->
+<form #formAddress = "ngForm">
+  <div>
+    <div>
+      <table class="table table-bordered">
+        <thead >
+          <th style="width: 80%;">Direccion</th>
+          <th style="width: 20%;">Eliminar</th>
+        </thead>
+        <tr *ngFor="let address of listAddress, let i=index">
+          <td style="width: 80%;">{{listTypeStreet[address.streetType-1]}} {{address.addressName}} nº {{address.portal}} {{address.floor}}-{{address.door}} {{address.postalCode.cod}}</td>
+          <td style="width: 20%;"class="text-center align-middle">
+              <button type="button " name="delete " (click)='delete(i)' class="btn btn-danger btn-sm ">Eliminar</button>
+           </td>
+        </tr>
+      </table>
+    </div>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAddress"
+      aria-expanded="false" aria-controls="collapseExample" (click)="changeText(text)">
+      <label>{{ text }}</label>
+    </button>
+  </div>
+  <div class="collapse" id="collapseAddress">
+    <div class="card card-body">
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <div class="form-row">
+            <div class="col-sm-6">
+              <label>Comunidad Autónoma:</label>
+              <div>
+                <select class="form-control" style="width: 80%;" [(ngModel)]="communitySelected"
+                  (change)="this.updateCommunity(communitySelected)" name="communities">
+                  <option id="community.cod" *ngFor="let community of listCommunity" [value]="community.cod">
+                    {{ community.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label>Provincia:</label>
+              <div>
+                <select class="form-control" style="width: 80%;" [(ngModel)]="provinceSelected"
+                  (change)="this.updateProvince(provinceSelected)" name="provinces">
+                  <option id="province.cod" *ngFor="let province of listProvince" [value]="province.cod">
+                    {{ province.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="form-row">
+            <div class="col-sm-6">
+              <label>Municipio:</label>
+              <div>
+                <select class="form-control" style="width: 80%;" [(ngModel)]="townshipSelected"
+                  (change)="this.updateTownShip(townshipSelected,provinceSelected)" name="townships">
+                  <option *ngFor="let township of listTownShip" [value]="township.cod" >{{ township.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label>Código postal:</label>
+              <div>
+                <select class="form-control" style="width: 80%;" [(ngModel)]="postalcodeSelected" name="postalcode" #postalcode="ngModel"
+                  ><!--(change)="updatePostalCode()"-->
+                  <option id="postalcode.cod" *ngFor="let postalcode of listPostalCode" [value]="postalcode.cod" >{{
+                    postalcode.cod}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label>Tipo de vía: </label>
+              <div>
+                <select id="selectStreet" class="form-control" style="width: 90%;" [(ngModel)]="selectedTypeStreet" name="typeStreet" selected='selectedTypeStreet' #typeStreet="ngModel">
+                  <option id="typeCalle" value="1" selected>Calle</option>
+                  <option id="typeTravesía" value="2" >Travesía</option>
+                  <option id="typeAvenida" value="3" >Avenida</option>
+                  <option id="typePoligono" value="4" >Polígono</option>
+                  <option id="typeKalea" value="5" >Kalea</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <label>Portal </label>
+              <div>
+                <input style="width: 80%;" type="number" class="form-control" [(ngModel)]="portalSelected" name="portal" #portal="ngModel" maxlength="4"/>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <label>Piso</label>
+              <div>
+                <input style="width: 90%;" type="text" class="form-control" [(ngModel)]="floorSelected" name="floor" #protal="ngModel" maxlength="24"/>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <label>Puerta</label>
+              <div>
+                <input style="width: 70%;" type="text" class="form-control" [(ngModel)]="doorSelected" name="door" #protal="ngModel" maxlength="9"/>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div>
+            <label>Nombre de la vía :</label>
+            <div>
+              <input style="width: 100%;" type="text" class="form-control" [(ngModel)]="addressNameSelected" name="name" #name="ngModel" maxlength="50">
+            </div>
+          </div>
+          <br/>
+          <div class="form-row">
+            <div class="text-center align-middle col-md-6">
+                <button type="button" (click)="[clean(), formAddress.resetForm({})]" name="limpiar" id="cleanAddress" routerLinkActive="router-link-active"
+                  class="btn btn-primary btn-sm">Limpiar</button>
+            </div>
+            <div class="text-center align-middle col-md-6">
+                <button type="submit" (click)="create()" name="limpiar" routerLinkActive="router-link-active"
+                  class="btn btn-primary btn-sm">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,62 @@
+{
+    "_comment": "FGS 26/11/19 Prueba mensajes en fichero en inglés",
+    "activate": {
+        "_comment": "FGS 28/11/19 Mensajes en la vista para cambiar la contraseña",
+        "title": "Password change",
+        "newPwdTitle": "New password",
+        "confirmPwdTitle": "Repeat password",
+        "acceptBtnTitle": "Accept",
+        "pwdChangeOkTitle": "Password",
+        "pwdChangeOkMsg": "The password has been modified successfully",
+        "pwdValidErrEmptyMsg": "You must enter some information",
+        "pwdValidErrRequisiteMsg": "The password does not meet the requirements. Must have 1 uppercase, 1 lowercase, 1 number, 1 special character and at least 8 characters ",
+        "pwdImgShowPwdMsg": "Show Password",
+        "pwdImgHidePwdMsg": "Hide Password"
+    },
+    "duallist": {
+        "btnAddTitle": "Add",
+        "btnRemoveTitle": "Remove",
+        "btnSelectAllTitle": "Select all",
+        "btnDeselectTitle": "Deselect"
+    },
+    "login": {
+        "title": "Login",
+        "dasTitle": "DAS ID",
+        "passwordTitle": "Password",
+        "errLoginTitle": "Login error",
+        "errLoginEmptyMsg": "Das or password must contain some information",
+        "wlcmLoginTitle": "Welcome",
+        "wlcmLoginMsg": "Hello {{das}}, you have successfully logged in!",
+        "alreadyLoggedTitle": "Login",
+        "alreadyLoggedMsg": "¡Hello {{das}}, you are already authenticated!",
+        "deactivatedAccountTitle": "Cuenta no activa",
+        "deactivatedAccountMsg": "Your account is deactivated. Contact support.",
+        "pendActivationAccountMsg": "You have not activated your account. Check your email. If you cannot find the account activation email, contact support.",
+        "lockedAccountTitle": "Blocked account",
+        "lockedAccountMsg": "You have exhausted the number of attempts to access your account, contact support to give you access to it.",
+        "errLoginBadCredentialsMsg": "Incorrect Das or Password!"
+    },
+    "paginator": {
+        "firstPageMsg": "First",
+        "lastPageMsg": "Last"
+    },
+    "role": {
+        "title": "",
+        "": "",
+        "create": {
+            "title": "Create Role",
+            "roleRequiredErrMsg": "The name of the role is mandatory",
+            "btnCancelTitle": "Cancel",
+            "btnCreateTitle": "Create role",
+            "newRoleCreateTitle": "New role created"
+        }
+    },
+    "welcome": {
+        "_comment": "FGS 28/11/19 Mensajes en la vista welcome a la que acceden todos los usuarios.",
+        "wlcmPageh3Msg": "Welcome",
+        "wlcmPageh4Msg": "This is the application's start window, in the top menu you will find the parts of the application to which you have access.",
+        "wlcmPageh5Msg": "We wish you a pleasant stay in the application.",
+        "imgAtos": "Logo of Atos"
+    }
+
+}

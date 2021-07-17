@@ -1,0 +1,63 @@
+<form #formFilter="ngForm" class="container my-2">
+    <div class="row mt-2">
+        <div class=" text-center align-middle col-md-4 " style="height: auto; display: flex;">
+          <label style="width: 30%;">DAS ID:</label>
+            <input class="form-control" style="width: 70%; display: block;" type="text" name="das" [(ngModel)]="das" value="" maxlength="7"> </div>
+        <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+          <label style="width: 30%;">Nombre:</label>
+            <input class="form-control" style="width: 70%; display: block;" type="text" name="name" [(ngModel)]="name" value="" maxlength="40" /> </div>
+        <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+          <label style="width: 30%;">1º apellido:</label>
+            <input class="form-control" style="width: 70%; display: block;" type="text" name="surmane1" [(ngModel)]="surname1" value="" maxlength="40" /></div>
+    </div>
+    <div *ngIf="this.vista == 1" class="row mt-2">
+        <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+          <label style="width: 30%;">2º apellido:</label>
+              <input class="form-control" style="width: 70%; display: block;" type="text" name="surname2" [(ngModel)]="surname2" value="" maxlength="40"> </div>
+        <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+          <label style="width: 30%;">Correo:</label>
+            <input class="form-control" style="width: 70%; display: block;" type="text" name="email" [(ngModel)]="mail" value="" maxlength="50" /> </div>
+        <div class="text-center align-middle col-md-4" style="height: auto; display: flex;">
+          <label style="width: 30%;">Estado:</label>
+          <select style="width: 70%; display: block;" class=" form-control" name="state" [(ngModel)]="state" value="">
+            <option value="0" selected>Todos los estados</option>
+            <option value="1">Pte. activación</option>
+            <option value="2">Activo</option>
+            <option value="3">Bloqueado</option>
+            <option value="4">Inactivo</option>
+          </select>
+        </div>
+    </div>
+    <ng-container *ngIf="this.vista == 3">
+    <!-- Futuros filtros para los identificadores de usuarios -->
+    <div class="row mt-2" style="justify-content: center">
+      <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+        <label style="width: 30%;">NIE: </label>
+        <input class="form-control" style="width: 70%; display: block;" type="text" name="nie" [(ngModel)]="nie" value="" maxlength="9"/>
+      </div>
+      <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+        <label style="width: 30%;">NIF: </label>
+        <input class="form-control" style="width: 70%; display: block;" type="text" name="nif" [(ngModel)]="nif" value="" maxlength="9"/>
+      </div>
+      <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+        <label style="width: 30%;">Pasaporte: </label>
+        <input class="form-control" style="width: 70%; display: block;" type="text" name="passport" [(ngModel)]="passport" value="" maxlength="9"/>
+      </div>
+    </div>
+    <div  class="row mt-2" style="justify-content: center">
+      <div class=" text-center align-middle col-md-4" style="height: auto; display: flex;">
+        <label style="width: 30%;">Número SS: </label>
+        <input class="form-control" style="width: 70%; display: block;" type="text" name="ssNumber" [(ngModel)]="ssNumber" value="" maxlength="12"/>
+      </div>
+    </div>
+  </ng-container>
+    <div class="row my-2">
+        <div class="text-center align-middle col-md-6">
+            <button type="button" (click)="[delete(), formFilter.resetForm({})]" name="limpiar" routerLinkActive="router-link-active" class="btn btn-primary btn-sm">Limpiar</button>
+        </div>
+        <div class="text-center align-middle col-md-6">
+            <button type="submit" (click)="filter()" name="filtrar" [routerLink]="route + '0'"
+              class="btn btn-primary btn-sm">{{ 'userData.filters.btnFilterTitle' | translate }}</button>
+        </div>
+    </div>
+</form>

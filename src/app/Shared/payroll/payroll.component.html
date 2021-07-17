@@ -1,0 +1,39 @@
+<form #udeForm="ngForm">
+  <div class="form-group row">
+      <mat-form-field class="col-md-6 col-sm-12" ngDefaultControl>
+        <input class="form-control" matInput [matDatepicker]="hired_picker" [matDatepickerFilter]="dateFilter"
+          style="color: black;" placeholder="{{ 'userDataExtended.payroll.hiredDateText' | translate }}" [(ngModel)]="userDE.hiredDate" name="hireDate" #hireDate="ngModel" disabled/>
+        <mat-datepicker-toggle matSuffix [for]="hired_picker"></mat-datepicker-toggle>
+        <mat-datepicker #hired_picker [disabled]="!(create || (userRRHH && this.userDE.hiredDate === null))"></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="col-md-6 col-sm-12" *ngIf="userRRHH"  ngDefaultControl>
+        <input class="form-control" matInput [matDatepicker]="fired_picker" [matDatepickerFilter]="dateFilter"
+          style="color: black;" placeholder="{{ 'userDataExtended.payroll.firedDateText' | translate }}" [min]="userDE.hiredDate" [(ngModel)]="userDE.firedDate" name="fireDate" #fireDate="ngModel" disabled/>
+        <mat-datepicker-toggle matSuffix [for]="fired_picker"></mat-datepicker-toggle>
+        <mat-datepicker #fired_picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+  </div>
+  <div class="form-group row ">
+    <div class="col-md-6 col-sm-12">
+      <label>{{ 'userDataExtended.payroll.payments' | translate }} :</label>
+      <mat-radio-group class="col-md-6 col-sm-12 d-inline-block" [(ngModel)]="userDE.payments" name="payment"
+        #payment="ngModel">
+        <ng-container *ngIf="userRRHH || userDE.payments == 12"><mat-radio-button [value]="12">12</mat-radio-button><br></ng-container>
+        <ng-container *ngIf="userRRHH || userDE.payments == 14"><mat-radio-button [value]="14">14</mat-radio-button></ng-container>
+      </mat-radio-group>
+    </div>
+    <div>
+      <label>{{ 'userDataExtended.payroll.specialConditions' | translate }}:</label>
+      <select class="form-control" [(ngModel)]="userDE.specialCondition.id" name="specialCondition"
+        #specialCondition="ngModel" [disabled]="!userRRHH">
+        <option *ngFor="let condition of Conditions" value="{{condition.id}}">{{condition.description}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row col-md-6 col-sm-12">
+    <label>{{ 'userDataExtended.payroll.salary' | translate }}: </label>
+    <select class="form-control" [(ngModel)]="userDE.salary" name="salary" #salary="ngModel" [disabled]="!userRRHH">
+      <option *ngFor="let sal of salarys" value="{{sal}}">{{sal}}</option>
+    </select>
+  </div>
+</form>

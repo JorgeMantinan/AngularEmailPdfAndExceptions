@@ -1,0 +1,110 @@
+<app-header></app-header>
+<div class="card border-primary mt-5">
+    <div class="card-header">{{ 'userData.viewTitle' | translate }}</div>
+    <div class="card-body text-primary">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title">{{ 'userData.title' | translate }}</h5>
+            <button class="btn btn.rounded btn-success" type="button" [routerLink]="['/manolito/usuarios/crear']"
+              *ngIf="authService.login.permissions.includes('ROLE_CREAR USUARIOS')">
+              {{ 'userData.btnCreateTitle' | translate }}</button>
+        </div>
+        <app-filtros [vista]= "1" [route]="this.route"#User></app-filtros>
+        <div class="table-responsive">
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th (click)="ordenation('dasId')" class="text-center align-middle">{{ 'userData.colDasTitle' | translate }}
+                        <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'dasId' else notOrder">
+                            <img *ngIf="orderDas" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            <img *ngIf="!orderDas" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                        </ng-container>
+                    </th>
+                    <th (click)="ordenation('name')" class="text-center align-middle">{{ 'userData.colNameTitle' | translate }}
+                        <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'name' else notOrder">
+                            <img *ngIf="orderName" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            <img *ngIf="!orderName" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                        </ng-container>
+                    </th>
+                    <th (click)="ordenation('surname1')" class="text-center align-middle">{{ 'userData.colSurname1Title' | translate }}
+                        <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'surname1' else notOrder">
+                            <img *ngIf="orderSurname1" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            <img *ngIf="!orderSurname1" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                        </ng-container>
+                    </th>
+                    <th (click)="ordenation('surname2')" class="text-center align-middle">{{ 'userData.colSurname2Title' | translate }}
+                        <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'surname2' else notOrder">
+                            <img *ngIf="orderSurname2" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            <img *ngIf="!orderSurname2" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                        </ng-container>
+                    </th>
+                    <th (click)="ordenation('email')" class="text-center align-middle">{{ 'userData.colEmailTitle' | translate }}
+                        <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'email' else notOrder">
+                            <img *ngIf="orderEmail" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            <img *ngIf="!orderEmail" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                        </ng-container>
+
+                    </th>
+                    <th (click)="ordenation('state')" class="text-center align-middle">Estado
+                        <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'state' else notOrder">
+                            <img *ngIf="orderState" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            <img *ngIf="!orderState" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                        </ng-container>
+                    </th>
+                    <th class="text-center align-middle">{{ 'userData.colRolesTitle' | translate }}</th>
+                    <th class="text-center align-middle"
+                      *ngIf="authService.login.permissions.includes('ROLE_MODIFICAR USUARIOS')">{{ 'userData.colEditTitle' | translate }}</th>
+                    <th class="text-center align-middle"
+                      *ngIf="authService.login.permissions.includes('ROLE_ELIMINAR USUARIOS')">{{ 'userData.colDeleteTitle' | translate }}</th>
+                </tr>
+                <ng-template #notOrder>
+                    <img src='assets/imgs/abajo.png' style="width: 15px; height: 15px; cursor:pointer">
+                </ng-template>
+            </thead>
+
+                <tbody>
+                    <tr *ngFor="let userData of this.usersData" scope="row" class="ellipsis">
+                        <td class="text-center align-middle">{{userData.dasId}}</td>
+                        <td class="text-center align-middle">{{userData.name}}</td>
+                        <td class="text-center align-middle">{{userData.surname1}}</td>
+                        <td class="text-center align-middle">{{userData.surname2}}</td>
+                        <td class="text-center align-middle correo">{{userData.email}}</td>
+
+                    <!-- T2017-JMM-19/11/2019 -->
+                    <td class="text-center align-middle" *ngIf="userData.state == 1">{{ 'userData.userStatePendActivation' | translate }}</td>
+                    <td class="text-center align-middle" *ngIf="userData.state == 2">{{ 'userData.userStateActive' | translate }}</td>
+                    <td class="text-center align-middle" *ngIf="userData.state == 3">{{ 'userData.userStateLocked' | translate }}</td>
+                    <td class="text-center align-middle" *ngIf="userData.state == 4">{{ 'userData.userStateInactive' | translate }}</td>
+
+                        <!-- T2017-JMM-18/11/2019 -->
+                        <td style="width:300px;" *ngIf="userData.roles.length != '1'">
+                            <div class="text-center" data-toggle="modal" data-target="#modalList" (click)="getRolesPermissions(userData.roles)">
+                                <ul style="padding:0px; margin: 0px;" scope="row">
+                                    <li style="list-style: none;">{{userData.roles.length}}</li>
+                                </ul>
+                            </div>
+                            <!-- Modal -->
+                            <app-modal [numList] = "2" [list]="roles" #Roles></app-modal>
+                        </td>
+                        <td class="text-center align-middle" *ngIf="userData.roles.length == '1'">
+                            <ul style="padding:0px; margin: 0px;" *ngFor="let role of userData.roles" scope="row">
+                                <li style="list-style: none;">{{role.name}}</li>
+                            </ul>
+                        </td>
+
+                    <td class="text-center align-middle" *ngIf="authService.login.permissions.includes('ROLE_MODIFICAR USUARIOS')">
+                        <button *ngIf="avoidDeleteEdit(userData)" type="button" name="edit"
+                        [routerLink]="['/manolito/usuarios/modificar',userData.id]" class="btn btn-primary btn-sm">
+                          {{ 'userData.btnEditTitle' | translate }}</button>
+                    </td>
+                    <td class="text-center align-middle" *ngIf="authService.login.permissions.includes('ROLE_ELIMINAR USUARIOS')">
+                        <button *ngIf="avoidDeleteEdit(userData)" type="button " name="delete " (click)='delete(userData)'
+                        class="btn btn-danger btn-sm ">{{ 'userData.btnDeleteTitle' | translate }}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+        <!-- dt003-DCS-12/11/2019 -->
+        <app-paginator class="paginator" *ngIf="paginator" [paginator]="paginator" [route]="this.route"></app-paginator>
+    </div>
+</div>

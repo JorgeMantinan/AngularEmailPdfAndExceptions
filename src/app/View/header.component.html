@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/manolito/welcome">{{ title }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" *ngIf="authService.login.permissions.includes('ROLE_VER USUARIOS')" routerLink="/manolito/usuarios/listar/pagina/0">{{ 'header.linkUserDataTitle' | translate }}</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" *ngIf="authService.login.permissions.includes('ROLE_VER ROLES')" routerLink="/manolito/roles/listar/pagina/0">{{ 'header.linkRoleTitle' | translate }}</a>
+            </li>
+            <!-- FGS 18/11/19 Añadida opción para acceder a datos extendidos de usuario -->
+            <ng-container *ngIf="authService.login.permissions.includes('ROLE_VER DATOS EXTENDIDOS') else misdatos">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/manolito/usuarios/datosextendidos/listar/pagina/0">{{ 'header.linkUserDataExtendedTitle' | translate }}</a>
+                </li>
+            </ng-container>
+            <ng-template #misdatos>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/manolito/usuarios/misdatosextendidos">Mis Datos</a>
+                </li>
+            </ng-template>
+
+        </ul>
+    </div>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a (click)="logout()" [routerLink]="['/manolito/login']" class="btn btn.rounded btn-light">Salir</a>
+        </li>
+    </ul>
+</nav>

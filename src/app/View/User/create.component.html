@@ -1,0 +1,129 @@
+<div class="card border-primary m-auto" style="max-width: 70rem;">
+    <div class="card-header">{{ 'userData.create.title' | translate }}</div>
+    <div class="card-body">
+        <form #userDataForm="ngForm">
+            <div class="form-group row">
+                <label for="name" class="col-form-label col-sm-12 col-md-2">{{ 'userData.create-modify.userDasFieldTitle' | translate }}</label>
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" [(ngModel)]="userData.dasId" name="das" #das="ngModel"
+                      pattern="[A-Z]\d{6}" required minlength="7" maxlength="7" [dasExistsValidator]="-1">
+                      <!--dasExistsValidator>-->
+                    <div class="alert alert-danger" *ngIf="das.invalid && (das.dirty || das.touched)">
+                        <div *ngIf="das?.errors?.required">
+                            {{ 'userData.create-modify.userDasReqErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="das?.errors?.minlength">
+                            {{ 'userData.create-modify.userDasMinLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="das?.errors?.maxlength">
+                            {{ 'userData.create-modify.userDasMaxLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="das?.errors?.pattern">
+                            {{ 'userData.create-modify.userDasPatternErrMsg' | translate }}
+                        </div>
+                      <div *ngIf="das?.errors?.dasExistsValidator">
+                        {{das.errors.dasExistsValidator}}
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-form-label col-sm-12 col-md-2">{{ 'userData.create-modify.userNameFieldTitle' | translate }}</label>
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" [(ngModel)]="userData.name" name="name" #name="ngModel"
+                      pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]{2,40}" required minlength="2" maxlength="40">
+                    <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div *ngIf="name?.errors?.required">
+                            {{ 'userData.create-modify.userFieldReqErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="name?.errors?.minlength">
+                            {{ 'userData.create-modify.userFieldMinLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="name?.errors?.maxlength">
+                            {{ 'userData.create-modify.userFieldMaxLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="name?.errors?.pattern">
+                            {{ 'userData.create-modify.userFieldPatternErrMsg' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="surname1" class="col-form-label col-sm-12 col-md-2">{{ 'userData.create-modify.userSurname1FieldTitle' | translate }}</label>
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" [(ngModel)]="userData.surname1" name="surname1" #surname1="ngModel"
+                      pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]{2,40}" required minlength="2" maxlength="40">
+                    <div class="alert alert-danger" *ngIf="surname1.invalid && (surname1.dirty || surname1.touched)">
+                        <div *ngIf="surname1?.errors?.required">
+                            {{ 'userData.create-modify.userFieldReqErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="surname1?.errors?.minlength">
+                            {{ 'userData.create-modify.userFieldMinLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="surname1?.errors?.maxlength">
+                            {{ 'userData.create-modify.userFieldMaxLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="surname1?.errors?.pattern">
+                            {{ 'userData.create-modify.userFieldPatternErrMsg' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="surname2" class="col-form-label col-sm-12 col-md-2">{{ 'userData.create-modify.userSurname2FieldTitle' | translate }}</label>
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" [(ngModel)]="userData.surname2" name="surname2" #surname2="ngModel" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\s]{2,40}" minlength="2" maxlength="40" required>
+                    <div class="alert alert-danger" *ngIf="surname2.invalid && (surname2.dirty || surname2.touched)">
+                        <div *ngIf="surname2?.errors?.required">
+                          {{ 'userData.create-modify.userFieldReqErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="surname2?.errors?.minlength">
+                            {{ 'userData.create-modify.userFieldMinLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="surname2?.errors?.maxlength">
+                            {{ 'userData.create-modify.userFieldMaxLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="surname2?.errors?.pattern">
+                            {{ 'userData.create-modify.userFieldPatternErrMsg' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-form-label col-sm-12 col-md-2">{{ 'userData.create-modify.userEmailFieldTitle' | translate }}</label>
+                <div class="col-md-6 col-sm-12">
+                    <input type="email" class="form-control" [(ngModel)]="userData.email" name="email" #email="ngModel"
+                      required minlength="5" maxlength="50" email>
+                    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email?.errors?.required">
+                            {{ 'userData.create-modify.userFieldReqErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="email?.errors?.email">
+                            {{ 'userData.create-modify.userEmailPatternErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="email?.errors?.minlength">
+                            {{ 'userData.create-modify.userEmailMinLengthErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="email?.errors?.maxlength">
+                            {{ 'userData.create-modify.userEmailMaxLengthErrMsg' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <label>{{ 'userData.create-modify.userRolesFieldTitle' | translate }} </label>
+            <app-dualList [numList]="3" [listAssign]="" #Roles></app-dualList>
+            <br/>
+
+            <div class="form-group row">
+                <div class="vol-sm-6">
+                    <button class="btn btn-primary" role="button" (click)='back()'>{{ 'userData.create.btnCancelTitle' | translate }}</button>
+                    <button class="btn btn-success button-disable" role="button" (click)='create()' onClick="this.disabled=true;"
+                      [disabled]="!userDataForm.form.valid || !Roles.listValid ">{{ 'userData.create.btnCreateTitle' | translate }}</button>
+                      <!--[disabled]=" isDasAlreadyInUse || !userDataForm.form.valid || !Roles.listValid "-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

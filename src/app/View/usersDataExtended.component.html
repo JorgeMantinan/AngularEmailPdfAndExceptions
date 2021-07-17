@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="card border-primary mt-5">
+    <div class="card-header d-flex justify-content-between">
+        {{ 'usersDataExtended.viewTitle' | translate }}
+        <img src="assets/imgs/gear.png" class="align-right" style="width: 30px; height: 30px; cursor:pointer" *ngIf="authService.login.permissions.includes('ROLE_CONFIGURACION NOMINAS')" data-toggle="modal" data-target="#modalConfiguration"></div>
+    <app-modal [numList]="" [list]=""></app-modal>
+    <div class="card-body text-primary">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title">{{ 'usersDataExtended.title' | translate }}</h5>
+            <button *ngIf="authService.login.permissions.includes('ROLE_CREAR DATOS EXTENDIDOS')" class="btn btn.rounded btn-success" type="button" [routerLink]="['/manolito/usuarios/datosextendidos/crear']">Crear
+        Datos Usuario</button>
+        </div>
+        <app-filtros [vista]="3" [route]="this.route" #UDE></app-filtros>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th (click)="ordenation('u.das_id')" class="text-center align-middle">{{ 'usersDataExtended.colDasTitle' | translate }}
+                            <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'u.das_id' else notOrder">
+                                <img *ngIf="orderDas" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                                <img *ngIf="!orderDas" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            </ng-container>
+                        </th>
+                        <th class="text-center align-middle">{{ 'usersDataExtended.colNameTitle' | translate }}
+                        </th>
+                        <!-- FGS 12/12/2019 Ahora nif/nie y pasaporte se muestran en columnas independientes-->
+                        <th (click)="ordenation('nif')" class="text-center align-middle">{{ 'userDataExtended.colNifTitle' | translate }}
+                            <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'nif' else notOrder">
+                                <img *ngIf="orderNif" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                                <img *ngIf="!orderNif" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            </ng-container>
+                        </th>
+                        <th (click)="ordenation('nie')" class="text-center align-middle">{{ 'userDataExtended.colNieTitle' | translate }}
+                            <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'nie' else notOrder">
+                                <img *ngIf="orderNie" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                                <img *ngIf="!orderNie" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            </ng-container>
+                        </th>
+                        <th (click)="ordenation('passport')" class="text-center align-middle">{{ 'userDataExtended.colPassportTitle' | translate }}
+                            <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'passport' else notOrder">
+                                <img *ngIf="orderPasport" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                                <img *ngIf="!orderPasport" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            </ng-container>
+                        </th>
+                        <th (click)="ordenation('ss_number')" class="text-center align-middle">{{ 'usersDataExtended.colNumSSTitle' | translate }}
+                            <ng-container class="input-group-append" *ngIf="this.ordenationBy == 'ssNumber' else notOrder">
+                                <img *ngIf="orderNumSS" src='assets/imgs/abajo_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                                <img *ngIf="!orderNumSS" src='assets/imgs/arriba_orden.png' style="width: 15px; height: 15px; cursor:pointer">
+                            </ng-container>
+                        </th>
+                        <th class="text-center align-middle">{{ 'usersDataExtended.colIbanTitle' | translate }}
+                        </th>
+                        <th class="text-center align-middle">{{ 'usersDataExtended.colAddressesTitle' | translate }}</th>
+                        <th class="text-center align-middle" *ngIf="authService.login.permissions.includes('ROLE_MODIFICAR DATOS EXTENDIDOS')">{{ 'usersDataExtended.colEditTitle' | translate }}</th>
+                        <th class="text-center align-middle" *ngIf="authService.login.permissions.includes('ROLE_ELIMINAR DATOS EXTENDIDOS')">{{ 'usersDataExtended.colDeleteTitle' | translate }}</th>
+                        <th class="text-center align-middle">
+                            <button type="button" name="nomina" (click)='download()' class="btn btn-primary btn-sm col-md-12"> <img src="assets/imgs/download.svg" style="width: 20px; height: 20px; cursor:pointer"/></button>
+                            <mat-checkbox [(ngModel)]="checked" (click)="addAll()" matTooltip="Selecciona todos" matTooltipPosition="above"></mat-checkbox>
+                        </th>
+
+                    </tr>
+                    <ng-template #notOrder>
+                        <img src='assets/imgs/abajo.png' style="width: 15px; height: 15px; cursor:pointer">
+                    </ng-template>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ude of listUserDataExtended" scope="row" class="ellipsis">
+                        <td class="text-center align-middle" *ngIf="viewPayrolls(ude) else notViewPayrolls" [routerLink]="['/manolito/usuarios/misnominas', ude.id]">{{ude.userData.dasId}}</td>
+                        <ng-template #notViewPayrolls>
+                            <td class="text-center align-middle">{{ude.userData.dasId}}</td>
+                        </ng-template>
+                        <td class="text-center align-middle">{{ude.userData.name}} {{ude.userData.surname1}} {{ude.userData.surname2}}</td>
+                        <td class="text-center align-middle" *ngIf="ude.nif != null else empty">{{ude.nif}}</td>
+                        <td class="text-center align-middle" *ngIf="ude.nie != null else empty">{{ude.nie}}</td>
+                        <td class="text-center align-middle" *ngIf="ude.passport != null else empty">{{ude.passport}}</td>
+                        <td class="text-center align-middle" *ngIf="ude.ssNumber != null else empty">{{ude.ssNumber}}</td>
+                        <td class="text-center align-middle" *ngIf="ude.ibanNumber != null else empty">
+                            {{ude.ibanNumber.substring(0,2)}}****{{ude.ibanNumber.substring(20)}}</td>
+                        <td class="text-center align-middle" data-toggle="modal" data-target="#modalList" (click)="[getAddresses(ude.addresses),setModal(3)]" *ngIf="ude.addresses.length > 0 else empty">{{ude.addresses.length}}
+                            <app-modal [numList]="3" [list]="ude.addresses" #Addresses></app-modal>
+                        </td>
+                        <ng-template #empty>
+                            <td class='text-center align-middle'>----</td>
+                        </ng-template>
+                        <td class="text-center align-middle" *ngIf="authService.login.permissions.includes('ROLE_MODIFICAR DATOS EXTENDIDOS')">
+                            <button type="button" name="edit" [routerLink]="['/manolito/usuarios/datosextendidos/modificar',ude.id]" class="btn btn-primary btn-sm">{{ 'usersDataExtended.btnEditTitle' | translate }}</button>
+                        </td>
+                        <td class="text-center align-middle" *ngIf="authService.login.permissions.includes('ROLE_ELIMINAR DATOS EXTENDIDOS')">
+                            <button *ngIf="avoidDelete(ude)" type="button" name="delete " (click)='delete(ude)' class="btn btn-danger btn-sm ">{{ 'usersDataExtended.btnDeleteTitle' | translate }}</button>
+                        </td>
+                        <td class="text-center align-middle">
+                            <!-- DT3004-JMM-13/01/20 -->
+                            <ng-container>
+                                <mat-checkbox *ngIf="checkedDowloadPayroll(ude) && ude.hasPayrollToShow.enabled" [matTooltip]="ude.hasPayrollToShow.month" matTooltipPosition="above" [checked]="checked" [(ngModel)]="ude.payroll" [disabled]="checked"></mat-checkbox>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-paginator class="paginator" *ngIf="paginator" [paginator]="paginator" [route]="this.route"></app-paginator>
+    </div>
+</div>

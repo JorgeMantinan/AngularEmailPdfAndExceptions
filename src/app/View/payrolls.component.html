@@ -1,0 +1,45 @@
+<app-header></app-header>
+<div class="card border-primary mt-5">
+    <div class="card-body text-primary">
+        <div class="form-group row">
+            <div class="form-group col d-flex align-self-center col-md-4 justify-content-end">
+                <div class="form-group row col-md-12 d-flex justify-content-center">
+                    <h5 class="card-title text-center">Datos salariales</h5>
+                    <app-payroll [userDE]="userDataExtended" [create]="false" [userRRHH]="false" #Payroll></app-payroll>
+                </div>
+            </div>
+            <div class="form-group col">
+                <h5 class="card-title">Nóminas</h5>
+                <ng-container *ngIf="payrollDate.length > 0 else withoutPayrolls">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <!-- mes, año y descarga -->
+                                    <th>Mes</th>
+                                    <th>Año</th>
+                                    <th class="text-center align-middle">
+                                        <button type="button" name="nomina" (click)='download()' class="btn btn-primary btn-sm "> <img src="assets/imgs/download.svg" style="width: 20px; height: 20px; cursor:pointer"/></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let payroll of payrollDate" scope="row" class="ellipsis">
+                                    <td>{{payroll.yearMonth.substring(4)}}</td>
+                                    <td>{{payroll.yearMonth.substring(0,4)}}</td>
+                                    <td class="text-center align-middle">
+                                        <mat-checkbox (checked)="payroll.checked" (click)="add(payroll)"></mat-checkbox>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-container>
+                <ng-template #withoutPayrolls>
+                    <tr>No dispone de nóminas hasta el momento</tr>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <app-paginator class="paginator" *ngIf="paginator" [paginator]="paginator" [route]="this.route"></app-paginator>
+</div>

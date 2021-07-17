@@ -1,0 +1,63 @@
+<app-header></app-header>
+
+<!-- dtg008-JMM-05/12/19 : Visualización unicamente de los datos del usuario logueado -->
+<!-- dtg008-JMM-10/12/19 : Paso de la vista a otro componente -->
+<div class="card border-primary mt-5">
+    <div class="card-header">{{ 'userDataExtended.viewTitle' | translate }}</div>
+    <div class="card-body text-primary">
+        <ng-container name="isDasIdUndefined" [(ngModel)]="isDasIdUndefined" #1isDasIdUndefined="ngModel" *ngIf="isDasIdUndefined === false else botonCrear" ngDefaultControl>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center align-middle">{{ 'userDataExtended.colDasTitle' | translate }}
+                            </th>
+                            <th class="text-center align-middle">{{ 'userDataExtended.colNameTitle' | translate }}</th>
+                            <!-- FGS 12/12/2019 Ahora nif/nie y pasaporte se muestran en columnas independientes-->
+                            <th class="text-center align-middle">{{ 'userDataExtended.colNifTitle' | translate }}
+                            </th>
+                            <th class="text-center align-middle">{{ 'userDataExtended.colNieTitle' | translate }}
+                            </th>
+                            <th class="text-center align-middle">{{ 'userDataExtended.colPassportTitle' | translate }}
+                            </th>
+                            <th class="text-center align-middle">{{ 'userDataExtended.colNumSSTitle' | translate }}
+                            </th>
+                            <th class="text-center align-middle">{{ 'userDataExtended.colIbanTitle' | translate }}
+                            </th>
+                            <th class="text-center align-middle">{{ 'userDataExtended.colAddressesTitle' | translate }}</th>
+                            <th class="text-center align-middle">
+                                {{ 'userDataExtended.colEditTitle' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ellipsis">
+                            <td class="text-center align-middle" [routerLink]="['/manolito/usuarios/misnominas', userDataExtended.id]">{{userDataExtended.userData.dasId}}</td>
+                            <td class="text-center align-middle">{{userDataExtended.userData.name}} {{userDataExtended.userData.surname1}} {{userDataExtended.userData.surname2}}</td>
+                            <td class="text-center align-middle" *ngIf="userDataExtended.nif != null else empty">{{userDataExtended.nif}}</td>
+                            <td class="text-center align-middle" *ngIf="userDataExtended.nie != null else empty">{{userDataExtended.nie}}</td>
+                            <td class="text-center align-middle" *ngIf="userDataExtended.passport != null else empty">{{userDataExtended.passport}}</td>
+                            <td class="text-center align-middle" *ngIf="userDataExtended.ssNumber != null else empty">{{userDataExtended.ssNumber}}</td>
+                            <td class="text-center align-middle" *ngIf="userDataExtended.ibanNumber != null else empty">
+                                {{userDataExtended.ibanNumber.substring(0,2)}}****{{userDataExtended.ibanNumber.substring(20)}}</td>
+                            <td class="text-center align-middle" *ngIf="userDataExtended.addresses.length > 0 else empty" data-toggle="modal" data-target="#exampleModalLong" (click)="getAddresses(userDataExtended.addresses)">
+                                {{userDataExtended.addresses.length}}
+                                <app-modal [numList]="3" [list]="addresses"></app-modal>
+                            </td>
+                            <ng-template #empty>
+                                <td class='text-center'>----</td>
+                            </ng-template>
+                            <td class="text-center align-middle">
+                                <button type="button" name="edit" [routerLink]="['/manolito/usuarios/datosextendidos/modificar',this.authService.login.id]" class="btn btn-primary btn-sm">{{ 'userDataExtended.btnEditTitle' | translate }}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-container>
+        <ng-template #botonCrear>
+            <div>
+                <button class="btn btn.rounded btn-success" type="button" [routerLink]="['/manolito/usuarios/datosextendidos/crear']">
+              {{ 'userDataExtended.btnCreateTitle' | translate }}</button>
+            </div>
+        </ng-template>
+    </div>

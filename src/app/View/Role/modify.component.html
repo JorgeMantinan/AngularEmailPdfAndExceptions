@@ -1,0 +1,38 @@
+<div class="card border-primary m-auto" style="max-width: 70rem;">
+    <div class="card-header">{{ 'role.modify.title' | translate }}</div>
+    <div class="card-body">
+        <form #roleForm="ngForm">
+            <div class="form-group row">
+                <label for="name" class="col-form-label col-sm-2">{{ 'role.create.roleNameTitle' | translate }}</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="role.name" required name="name" #name="ngModel"
+                    [roleNameExistsValidator]="role.id">
+                    <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div *ngIf="name?.errors?.required">
+                            {{ 'role.modify.roleRequiredErrMsg' | translate }}
+                        </div>
+                        <div *ngIf="name?.errors?.roleNameExistsValidator">
+                          {{name.errors.roleNameExistsValidator}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <label>{{ 'role.modify.permissionsTitle' | translate }} </label>
+            <app-dualList [numList]="2" [listAssign]="this.role.permissions" #Permissions></app-dualList>
+            <br/>
+            <label>{{ 'role.modify.usersTitle' | translate }}</label>
+            <app-dualList [numList]="1" [listAssign]="this.role.usersData" #UsersData></app-dualList>
+            <br/>
+            <div class="form-group row">
+                <div class="vol-sm-6">
+                    <button class="btn btn-danger" role="button" (click)='back()'>
+                        {{ 'role.modify.btnCancelTitle' | translate }}</button>
+                    <button class="btn btn-success button-disable" role="button" (click)='update()'
+                      [disabled]="!roleForm.form.valid || !Permissions.listValid">
+                      {{ 'role.modify.btnModifyTitle' | translate }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

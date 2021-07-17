@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    height: 100%;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ellipsis>td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ellipsis>td.correo {
+    max-width: 300px;
+}
+
+.ellipsis>td:hover {
+    overflow: visible;
+    white-space: normal;
+}
+
+.btn-viewPayrolls:hover {
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-disable:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+
+/* Styles Angular Material */
+
+.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: black !important;
+    ;
+}
+
+.mat-form-field-label {
+    /*change color of label*/
+    color: black !important;
+}
+
+.mat-form-field-flex {
+    background-color: white;
+}
+
+.mat-datepicker-toggle {
+    color: grey;
+}
+
+.mat-datepicker {
+    color: whitesmoke;
+}
+
+.mat-radio-button .mat-radio-outer-circle {
+    border-color: black;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: crimson;
+    /*inner circle color change*/
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: crimson;
+    /*outer ring color change*/
+}
+
+.mat-checkbox-frame {
+    border-color: #6c757d;
+}
